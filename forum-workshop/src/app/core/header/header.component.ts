@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  isLogged: boolean = false;
+  isLogged: boolean = true;
 
 }
