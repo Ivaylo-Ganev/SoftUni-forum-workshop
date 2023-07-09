@@ -1,5 +1,6 @@
 
 <div class="container">
+    
     <!-- theme content  -->
     <div class="theme-content">
         <!-- theme-title  -->
@@ -36,7 +37,7 @@
             </div>
         </div>
 
-        <div class="answer-comment">
+        <div class="answer-comment" *ngIf="isLogged">
             <p><span>currentUser</span> comment:</p>
             <div class="answer">
                 <form>
