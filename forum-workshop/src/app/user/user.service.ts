@@ -28,6 +28,15 @@ export class UserService {
     }
     localStorage.setItem(this.USER_KEY, JSON.stringify(this.user));
   }
+
+  register(): void {
+    this.user = {
+      email: 'john.doe@gmail.com',
+      firstName: 'John'
+    }
+    localStorage.setItem(this.USER_KEY, JSON.stringify(this.user));
+  }
+
   logout(): void {
     this.user = undefined;
     localStorage.removeItem(this.USER_KEY);
