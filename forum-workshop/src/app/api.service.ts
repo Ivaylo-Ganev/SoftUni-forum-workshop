@@ -19,4 +19,8 @@ export class ApiService {
     const apiUrl = environment.apiUrl;
     return this.http.get<Post[]>(`${apiUrl}/posts${limit ? `?limit=${limit}` : ''}`);
   }
+  getTheme(id: number) {
+    const apiUrl = environment.apiUrl;
+    return this.http.get<Theme>(`${apiUrl}/themes/${id}`);
+  }
 }
