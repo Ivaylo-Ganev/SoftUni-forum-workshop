@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { User } from '../types/user';
+import { UserService } from '../user/user.service';
 
 @Component({
   selector: 'app-home',
@@ -7,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  constructor(private userService: UserService) {}
+
+  get isLogged(): boolean {
+    return this.userService.isLogged;
+  }
 }
