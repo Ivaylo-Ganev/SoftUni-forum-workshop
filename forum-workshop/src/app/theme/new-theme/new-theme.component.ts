@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 
@@ -11,13 +12,20 @@ export class NewThemeComponent {
 
   constructor(private apiService: ApiService, private router: Router) {}
 
-  createTheme(name: string, text: string) {
-    this.apiService.createTheme(name, text).subscribe(data => {
-      console.log(data)
-    })
-  
-  }
+  // createTheme(name: string, text: string) {
+  //   this.apiService.createTheme(name, text).subscribe(data => {
+  //     console.log(data)
+  //   })
+  // }
   onCancelClick(): void {
     this.router.navigate(['/']);
+  }
+
+  newThemeSubmitHandler(form: NgForm): void {
+    if(form.invalid) {
+      return
+    }
+    console.log(form.value);
+    
   }
 }
