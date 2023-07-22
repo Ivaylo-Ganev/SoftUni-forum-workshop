@@ -32,9 +32,11 @@ export class RegisterComponent {
     if(this.form.invalid) {
       return;
     }
-    
+     const {username, email, passGroup: {password, rePassword} = {}, tel} = this.form.value;
 
-    // this.userService.register();
-    // this.router.navigate(['/']);
+    this.userService.register(username!, email!, password!, rePassword!, tel!).subscribe(()=> {
+      this.router.navigate(['/themes']);
+    })
+
   }
 }
