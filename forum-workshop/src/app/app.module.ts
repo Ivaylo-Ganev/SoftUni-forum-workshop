@@ -15,6 +15,7 @@ import { ThemeModule } from './theme/theme.module';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { appInterceptorProvider } from './app.imterceptor';
+import { AuthenticateComponent } from './authenticate/authenticate.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { appInterceptorProvider } from './app.imterceptor';
     HomeComponent,
     WelcomeComponent,
     NotFoundComponent,
+    AuthenticateComponent,
   ],
   imports: [
     CoreModule,
