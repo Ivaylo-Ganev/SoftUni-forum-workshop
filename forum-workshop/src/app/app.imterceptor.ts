@@ -1,11 +1,15 @@
-import { HTTP_INTERCEPTORS, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
-import { Provider } from "@angular/core";
-import { Observable } from "rxjs";
+import { HTTP_INTERCEPTORS, HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
+import { Injectable, Provider } from "@angular/core";
+import { Router } from "@angular/router";
+import { Observable, catchError } from "rxjs";
 import { environment } from "src/environments/environment.development";
+import { ErrorService } from "./core/error/error.service";
 
 const {apiUrl} = environment;
-
+@Injectable()
 export class AppInterceptor implements HttpInterceptor {
+
+    constructor(private router: Router, private errorService: ErrorService) {}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         
@@ -15,7 +19,17 @@ export class AppInterceptor implements HttpInterceptor {
                 withCredentials: true
             })
         }
-        return next.handle(req);
+        return next.handle(req).pipe(
+            catchError((err) => {
+                if(err.status === 401) {
+                    this.router.navigate(['/home'])
+                } else {
+                    this.errorService.setError(err)
+                    this.router.navigate(['/error'])
+                }
+                return [err]
+            })
+        )
     }
 }
 
