@@ -25,7 +25,13 @@ export class NewThemeComponent {
     if(form.invalid) {
       return
     }
-    console.log(form.value);
+    const {themeName, postText} = form.value;
+    this.apiService.createTheme(themeName, postText).subscribe((data) => {
+      console.log(data);
+      
+      this.router.navigate(['/themes']);
+    }
+    )
     
   }
 }
